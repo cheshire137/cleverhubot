@@ -43,13 +43,9 @@ module.exports = (robot) ->
         title: 'RGB'
         value: color.toRgbString()
         short: true
-      title = raw_color
-      title = color_name if color_name
       payload =
         message: msg.message
         content:
-          text: title
-          fallback: "color #{raw_color}"
           color: hex_color
           fields: fields
       robot.emit 'slack-attachment', payload
@@ -76,7 +72,6 @@ module.exports = (robot) ->
         payload =
           message: msg.message
           content:
-            text: "Color ##{index + 1}"
             color: raw_color
             fields: fields
         robot.emit 'slack-attachment', payload
