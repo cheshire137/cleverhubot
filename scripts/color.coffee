@@ -8,7 +8,7 @@
 #   None
 #
 # Commands:
-#   hubot color <color> - Translate color to other formats, display color
+#   hubot color <color> - Translate color from hex, a name, or rgb to other formats
 #
 # Notes:
 #
@@ -23,7 +23,11 @@ module.exports = (robot) ->
     color = tinycolor(raw_color)
     hex_color = color.toHexString()
     rgb_color = color.toRgbString()
+    color_name = color.toName()
     if raw_color == hex_color || raw_color == hex_color.replace(/^#/, '')
-      msg.send "#{raw_color}:\t#{rgb_color}"
+      response = "#{raw_color}: #{rgb_color}"
     else
-      msg.send "#{raw_color}:\t#{hex_color}\t#{rgb_color}"
+      response = "#{raw_color}: #{hex_color} / #{rgb_color}"
+    if color_name && color_name != raw_color
+      response += " / #{color_name}"
+    msg.send response
