@@ -1,5 +1,5 @@
 # Description:
-#   Get colors
+#   Translate colors to hex and RGB values
 #
 # Dependencies:
 #    "tinycolor" : "https://github.com/bgrins/TinyColor/tarball/master",
