@@ -26,3 +26,7 @@ Inside `bin/hubot`:
 Make note of the URL Heroku puts it on, then use that URL:
 
     heroku config:set HEROKU_URL=http://some-heroku-name-1234.herokuapp.com
+
+Then:
+
+    heroku ps:scale web=1
