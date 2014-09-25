@@ -33,7 +33,6 @@ module.exports = (robot) ->
       raw_color = raw_color.trim().toLowerCase()
       color = tinycolor(raw_color)
       hex_color = color.toHexString()
-      rgb_color = color.toRgbString()
       color_name = color.toName()
       fields = []
       fields.push
@@ -42,7 +41,7 @@ module.exports = (robot) ->
         short: true
       fields.push
         title: 'RGB'
-        value: rgb_color
+        value: color.toRgbString()
         short: true
       title = raw_color
       title = color_name if color_name
@@ -62,10 +61,23 @@ module.exports = (robot) ->
       colors = randomColor
         count: count
         hue: hue
-      for color in colors
+      index = 0
+      for raw_color in colors
+        color = tinycolor(raw_color)
+        fields = []
+        fields.push
+          title: 'Hex'
+          value: color.toHexString()
+          short: true
+        fields.push
+          title: 'RGB'
+          value: color.toRgbString()
+          short: true
         payload =
           message: msg.message
           content:
-            text: color
-            color: color
+            text: "Color ##{index + 1}"
+            color: raw_color
+            fields: fields
         robot.emit 'slack-attachment', payload
+        index++
