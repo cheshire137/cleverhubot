@@ -1,4 +1,4 @@
-# My Hubot
+# Shazbot Hubot
 
 A Hubot set up for use in Slack with some custom scripts.
 
@@ -34,11 +34,23 @@ Inside `bin/hubot`:
 Make note of the URL Heroku puts it on, then use that URL:
 
     heroku config:set HEROKU_URL=http://some-heroku-name-1234.herokuapp.com
+    heroku ps:scale web=1
+    heroku addons:add redistogo:nano
 
-Then:
+In your Slack, set up an integration with Hubot. Point to the Heroku server
+where you deployed it. Slack will tell you three environment variables you need
+to set:
 
     heroku config:add HUBOT_SLACK_TOKEN=123abc
     heroku config:add HUBOT_SLACK_TEAM=myteam
-    heroku config:add HUBOT_SLACK_BOTNAME=slackbot
-    heroku ps:scale web=1
-    heroku addons:add redistogo:nano
+    heroku config:add HUBOT_SLACK_BOTNAME=shazbot
+
+In your Slack chat, you should now be able to say:
+
+    shazbot color
+    shazbot colors
+    shazbot color blue
+    shazbot color #ff00ff
+    shazbot colors 3
+    shazbot colors 4 red
+    shazbot clever good morning

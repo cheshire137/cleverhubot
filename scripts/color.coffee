@@ -52,12 +52,16 @@ module.exports = (robot) ->
     else
       count = msg.match[2] || 5
       count = parseInt(count, 10)
+      count = 1 if count < 1
+      count = 10 if count > 10
       hue = msg.match[3] || 'random'
       hue = hue.trim().toLowerCase()
+      valid_hues = ['green', 'blue', 'random', 'red', 'orange', 'yellow',
+                    'purple', 'pink', 'monochrome']
+      hue = 'random' unless valid_hues.indexOf(hue) > -1
       colors = randomColor
         count: count
         hue: hue
-      index = 0
       for raw_color in colors
         color = tinycolor(raw_color)
         fields = []
@@ -75,4 +79,3 @@ module.exports = (robot) ->
             color: raw_color
             fields: fields
         robot.emit 'slack-attachment', payload
-        index++
