@@ -25,21 +25,23 @@ module.exports = (robot) ->
     rgb_color = color.toRgbString()
     color_name = color.toName()
     fields = []
-    fields.push
-      value: "Hex: #{hex_color}"
-      short: true
-    fields.push
-      value: "RGB: #{rgb_color}"
-      short: true
-    if color_name
+    if raw_color != hex_color && raw_color != hex_color.replace(/^#/, '')
       fields.push
-        value: "Name: #{color_name}"
+        title: 'Hex'
+        value: hex_color
         short: true
+    if raw_color != rgb_color
+      fields.push
+        title: 'RGB'
+        value: rgb_color
+        short: true
+    title = raw_color
+    title = color_name if color_name
     payload =
       message: msg.message
       content:
-        text: "color #{raw_color}"
-        fallback: raw_color
+        text: title
+        fallback: "color #{raw_color}"
         color: hex_color
         fields: fields
     robot.emit 'slack-attachment', payload

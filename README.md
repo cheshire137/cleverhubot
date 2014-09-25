@@ -25,14 +25,7 @@ Inside `bin/hubot`:
 
 ### Colors
 
-Inside `bin/hubot`:
-
-    % bin/hubot
-    Hubot> [Thu Sep 25 2014 00:20:08 GMT-0400 (EDT)] INFO Data for hubot brain retrieved from Redis
-    Hubot> hubot color purple
-    Hubot> purple:  #800080 rgb(128, 0, 128)
-    Hubot> hubot color #ff00ff
-    Hubot> #ff00ff: rgb(255, 0, 255)
+`hubot color purple` will display message in Slack with the hex and RGB color codes for the given color. Pass it color names, hex values, RGB values, and other formats. Uses [TinyColor](https://github.com/bgrins/TinyColor) for parsing.
 
 ## How to Deploy to Heroku
 
