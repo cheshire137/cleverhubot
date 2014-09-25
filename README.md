@@ -29,4 +29,8 @@ Make note of the URL Heroku puts it on, then use that URL:
 
 Then:
 
+    heroku config:add HUBOT_SLACK_TOKEN=123abc
+    heroku config:add HUBOT_SLACK_TEAM=myteam
+    heroku config:add HUBOT_SLACK_BOTNAME=slackbot
     heroku ps:scale web=1
+    heroku addons:add redistogo:nano
