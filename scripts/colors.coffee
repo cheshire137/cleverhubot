@@ -18,7 +18,7 @@
 # Author:
 #   moneypenny
 
-randomColor = require('randomColor')
+randomColor = require('randomcolor')
 
 module.exports = (robot) ->
   robot.respond /colors(\s+)?(\d+)?(\s+)?(green|blue|random|red|orange|yellow|purple|pink|monochrome)?/i, (msg) ->
