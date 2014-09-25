@@ -18,3 +18,11 @@ Inside `bin/hubot`:
     Hubot> Dinner is for to eat.
     Hubot> hubot clever tell me a joke
     Hubot> A quiet woman walked into a room.
+
+## How to Deploy to Heroku
+
+    heroku create
+
+Make note of the URL Heroku puts it on, then use that URL:
+
+    heroku config:set HEROKU_URL=http://some-heroku-name-1234.herokuapp.com
