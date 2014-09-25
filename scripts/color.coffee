@@ -50,10 +50,10 @@ module.exports = (robot) ->
           fields: fields
       robot.emit 'slack-attachment', payload
     else
-      count = msg.match[2] || 5
+      count = msg.match[2] || 4
       count = parseInt(count, 10)
       count = 1 if count < 1
-      count = 10 if count > 10
+      count = 6 if count > 6
       hue = msg.match[3] || 'random'
       hue = hue.trim().toLowerCase()
       valid_hues = ['green', 'blue', 'random', 'red', 'orange', 'yellow',
