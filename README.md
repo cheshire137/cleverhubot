@@ -1,11 +1,15 @@
-# Cleverhubot
+# My Hubot
+
+A Hubot set up for use in Slack with some custom scripts.
 
 ## How to Run
 
 1. `npm install`
 1. `bin/hubot`
 
-## How to Talk to Cleverbot
+## Custom Scripts
+
+### Cleverbot
 
 Inside `bin/hubot`:
 
@@ -18,6 +22,17 @@ Inside `bin/hubot`:
     Hubot> Dinner is for to eat.
     Hubot> hubot clever tell me a joke
     Hubot> A quiet woman walked into a room.
+
+### Colors
+
+Inside `bin/hubot`:
+
+    % bin/hubot
+    Hubot> [Thu Sep 25 2014 00:20:08 GMT-0400 (EDT)] INFO Data for hubot brain retrieved from Redis
+    Hubot> hubot color purple
+    Hubot> purple:  #800080 rgb(128, 0, 128)
+    Hubot> hubot color #ff00ff
+    Hubot> #ff00ff: rgb(255, 0, 255)
 
 ## How to Deploy to Heroku
 
