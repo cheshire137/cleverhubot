@@ -9,6 +9,8 @@ A Hubot set up for use in Slack with some custom scripts.
 
 ## Custom Scripts
 
+Inside `bin/hubot`, refer to hubot as `hubot`. When running in Slack, it is referred to as `shazbot`.
+
 ### Cleverbot
 
 Inside `bin/hubot`:
@@ -25,7 +27,13 @@ Inside `bin/hubot`:
 
 ### Colors
 
-`hubot color purple` will display message in Slack with the hex and RGB color codes for the given color. Pass it color names, hex values, RGB values, and other formats. Uses [TinyColor](https://github.com/bgrins/TinyColor) for parsing.
+`hubot color purple` will display messages in Slack with the hex and RGB color codes for the given color. Pass it color names, hex values, RGB values, and other formats. Uses [TinyColor](https://github.com/bgrins/TinyColor) for parsing.
+
+`hubot colors` will generate random colors for you. You can pass a number up to 6 to generate that many colors, e.g., `hubot colors 3`. You can also pass one of green, blue, random, red, orange, yellow, purple, pink, or monochrome to generate specific kinds of colors, e.g., `hubot colors pink`
+
+### Disapproval
+
+Hubot disapproves of things.
 
 ## How to Deploy to Heroku
 
@@ -54,3 +62,6 @@ In your Slack chat, you should now be able to say:
     shazbot colors 3
     shazbot colors 4 red
     shazbot clever good morning
+    shazbot disapprove
+    shazbot disapproves
+    shazbot disapproval
