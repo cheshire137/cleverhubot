@@ -33,7 +33,11 @@ Inside `bin/hubot`:
 
 ### Disapproval
 
-Hubot disapproves of things.
+Shazbot disapproves of things.
+
+### Love
+
+Contrariwise, shazbot also loves many things.
 
 ## How to Deploy to Heroku
 
@@ -65,3 +69,5 @@ In your Slack chat, you should now be able to say:
     shazbot disapprove
     shazbot disapproves
     shazbot disapproval
+    shazbot love
+    shazbot loves
