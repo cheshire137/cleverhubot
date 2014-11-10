@@ -10,12 +10,6 @@
 # Author:
 #   nuex
 
-class Hello
-  constructor: () ->
-
-  say: () ->
-    console.log 'hi'
-
 module.exports = (bot) ->
   bot.respond /bank create_account/i, (msg) ->
     opening_balance = 100
