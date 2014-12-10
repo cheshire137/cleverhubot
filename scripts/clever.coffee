@@ -19,7 +19,7 @@ Cleverbot = require('cleverbot-node')
 
 module.exports = (robot) ->
   robot.respond /clever (.+)/i, (msg) ->
-    query = msg.match[1]
+    query = msg.match[1].trim()
     bot = new Cleverbot()
     callback = (response) ->
       msg.send response.message
