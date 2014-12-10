@@ -31,7 +31,7 @@ module.exports = (robot) ->
       msg.send "Error: Threat Level must be an integer between 0-5."
 
   # Set threat level message
-  # set threat message ants
+  # set threat message ants: Please report any sigtings to the war-room!
   robot.respond /set threat message\s*(.*)?$/i, (msg) ->
     incoming = msg.match[1]
     words = incoming.split(':')
