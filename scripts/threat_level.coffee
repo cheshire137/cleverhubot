@@ -2,7 +2,11 @@
 #   Tracks threat level of threats
 #
 # Commands:
-#   TODO
+#   Set/create a threat level: set threat level ants 5
+#   Set a threat level message: set threat message ants: Please report any ant sightings to the war-room!
+#   Remove a threat: remove threat level ants
+#   Show one threat: threat level ants
+#   Show all threats: threat level
 #
 module.exports = (robot) ->
 
@@ -17,7 +21,7 @@ module.exports = (robot) ->
 
   # Set threat level
   # set threat level ants 5
-  robot.respond /set threat level\s*(.*)?$/i, (msg) ->
+  robot.respond /set threat level\s+(.*)?$/i, (msg) ->
     incoming = msg.match[1]
     words = incoming.split(' ')
     level = parseInt(words.pop(), 10)
@@ -31,8 +35,8 @@ module.exports = (robot) ->
       msg.send "Error: Threat Level must be an integer between 0-5."
 
   # Set threat level message
-  # set threat message ants: Please report any sigtings to the war-room!
-  robot.respond /set threat message\s*(.*)?$/i, (msg) ->
+  # set threat message ants: Please report any ant sightings to the war-room!
+  robot.respond /set threat message\s+(.*)?$/i, (msg) ->
     incoming = msg.match[1]
     words = incoming.split(':')
     message = words.pop()
@@ -45,7 +49,7 @@ module.exports = (robot) ->
 
   # List threat level for an item
   # threat level ants
-  robot.respond /threat level \s*(.*)?$/i, (msg) ->
+  robot.respond /threat level \s+(.*)?$/i, (msg) ->
     threat = msg.match[1]
     robot.brain.data.threat ||= {}
     level = robot.brain.data.threat[threat].level
@@ -63,7 +67,7 @@ module.exports = (robot) ->
 
   # Delete threat
   # remove threat level ants
-  robot.respond /remove threat level \s*(.*)?$/i, (msg) ->
+  robot.respond /remove threat level \s+(.*)?$/i, (msg) ->
     threat = msg.match[1]
     robot.brain.data.threat ||= {}
     delete robot.brain.data.threat[threat]
