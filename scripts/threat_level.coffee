@@ -12,9 +12,17 @@ module.exports = (robot) ->
 
   threat_response = (threat) ->
     threat_data = robot.brain.data.threat[threat]
-    response = "THREAT #{threat}: #{threat_data.level}"
+    level = threat_data.level
+    response = "THREAT #{threat}: #{level}"
+    readiness = switch level
+      when 1 then 'MAXIMUM READINESS'
+      when 2 then 'READY TO ENGAGE'
+      when 3 then 'READY TO MOBILIZE'
+      when 4 then 'ABOVE NORMAL READINESS'
+      when 5 then 'NORMAL READINESS'
     if threat_data.level == 1
-      response = "#{response} MAXIMUM"
+      response = "#{response} "
+    response = "#{response} #{readiness}"
     if message = threat_data.message
       response = "#{response} - #{message}"
     response
@@ -62,8 +70,11 @@ module.exports = (robot) ->
   # threat level
   robot.respond /threat level$/i, (msg) ->
     robot.brain.data.threat ||= {}
-    for threat of robot.brain.data.threat
-      msg.send threat_response(threat)
+    if Object.keys(robot.brain.data.threat).length > 0
+      for threat of robot.brain.data.threat
+        msg.send threat_response(threat)
+    else
+      msg.send 'There are currently no threats.'
 
   # Delete threat
   # remove threat level ants
