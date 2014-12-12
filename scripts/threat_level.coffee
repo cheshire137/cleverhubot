@@ -13,7 +13,7 @@ module.exports = (robot) ->
   threat_response = (threat) ->
     threat_data = robot.brain.data.threat[threat]
     response = "THREAT #{threat}: #{threat_data.level}"
-    if threat_data.level == 5
+    if threat_data.level == 1
       response = "#{response} MAXIMUM"
     if message = threat_data.message
       response = "#{response} - #{message}"
@@ -27,12 +27,12 @@ module.exports = (robot) ->
     level = parseInt(words.pop(), 10)
     threat = words.join(' ')
     robot.brain.data.threat ||= {}
-    if level >= 0 && level <= 5
+    if level >= 1 && level <= 5
       robot.brain.data.threat[threat] ||= {}
       robot.brain.data.threat[threat].level = level
       msg.send threat_response(threat)
     else
-      msg.send "Error: Threat Level must be an integer between 0-5."
+      msg.send "Error: Threat Level must be an integer between 1-5."
 
   # Set threat level message
   # set threat message ants: Please report any ant sightings to the war-room!
