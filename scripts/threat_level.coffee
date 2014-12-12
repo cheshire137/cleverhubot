@@ -72,3 +72,9 @@ module.exports = (robot) ->
     robot.brain.data.threat ||= {}
     delete robot.brain.data.threat[threat]
     msg.send "Removed threat, #{threat}."
+
+  # Delete all threats
+  # remove all threats
+  robot.respond /remove all threats$/i, (msg) ->
+    delete robot.brain.data.threat
+    msg.send "Removed all threats."
