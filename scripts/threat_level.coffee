@@ -2,11 +2,11 @@
 #   Tracks threat level of threats
 #
 # Commands:
-#   Set/create a threat level: set threat level ants 5
-#   Set a threat level message: set threat message ants: Please report any ant sightings to the war-room!
-#   Remove a threat: remove threat level ants
-#   Show one threat: threat level ants
-#   Show all threats: threat level
+#   set threat level <threat> <level> - Set/create a threat level
+#   set threat message <threat>:<message> - Set a threat level message
+#   remove threat level <threat> - Remove a threat
+#   threat level <threat> - Show one threat
+#   threat level - Show all threats
 #
 module.exports = (robot) ->
 
