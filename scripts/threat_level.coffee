@@ -2,19 +2,25 @@
 #   Tracks threat level of threats
 #
 # Commands:
-#   Set/create a threat level: set threat level ants 5
-#   Set a threat level message: set threat message ants: Please report any ant sightings to the war-room!
-#   Remove a threat: remove threat level ants
-#   Show one threat: threat level ants
-#   Show all threats: threat level
+#   set threat level <threat> <level> - Set/create a threat level
+#   set threat message <threat>:<message> - Set a threat level message
+#   remove threat level <threat> - Remove a threat
+#   threat level <threat> - Show one threat
+#   threat level - Show all threats
 #
 module.exports = (robot) ->
 
   threat_response = (threat) ->
     threat_data = robot.brain.data.threat[threat]
-    response = "THREAT #{threat}: #{threat_data.level}"
-    if threat_data.level == 5
-      response = "#{response} MAXIMUM"
+    level = threat_data.level
+    response = "THREAT #{threat}: #{level}"
+    readiness = switch level
+      when 1 then 'MAXIMUM READINESS'
+      when 2 then 'READY TO ENGAGE'
+      when 3 then 'READY TO MOBILIZE'
+      when 4 then 'ABOVE NORMAL READINESS'
+      when 5 then 'NORMAL READINESS'
+    response = "#{response} #{readiness}"
     if message = threat_data.message
       response = "#{response} - #{message}"
     response
@@ -27,12 +33,12 @@ module.exports = (robot) ->
     level = parseInt(words.pop(), 10)
     threat = words.join(' ')
     robot.brain.data.threat ||= {}
-    if level >= 0 && level <= 5
+    if level >= 1 && level <= 5
       robot.brain.data.threat[threat] ||= {}
       robot.brain.data.threat[threat].level = level
       msg.send threat_response(threat)
     else
-      msg.send "Error: Threat Level must be an integer between 0-5."
+      msg.send "Error: Threat Level must be an integer between 1-5."
 
   # Set threat level message
   # set threat message ants: Please report any ant sightings to the war-room!
@@ -62,8 +68,11 @@ module.exports = (robot) ->
   # threat level
   robot.respond /threat level$/i, (msg) ->
     robot.brain.data.threat ||= {}
-    for threat of robot.brain.data.threat
-      msg.send threat_response(threat)
+    if Object.keys(robot.brain.data.threat).length > 0
+      for threat of robot.brain.data.threat
+        msg.send threat_response(threat)
+    else
+      msg.send 'There are currently no threats.'
 
   # Delete threat
   # remove threat level ants
@@ -72,3 +81,9 @@ module.exports = (robot) ->
     robot.brain.data.threat ||= {}
     delete robot.brain.data.threat[threat]
     msg.send "Removed threat, #{threat}."
+
+  # Delete all threats
+  # remove all threats
+  robot.respond /remove all threats$/i, (msg) ->
+    delete robot.brain.data.threat
+    msg.send "Removed all threats."
