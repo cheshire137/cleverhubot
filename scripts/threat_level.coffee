@@ -20,8 +20,6 @@ module.exports = (robot) ->
       when 3 then 'READY TO MOBILIZE'
       when 4 then 'ABOVE NORMAL READINESS'
       when 5 then 'NORMAL READINESS'
-    if threat_data.level == 1
-      response = "#{response} "
     response = "#{response} #{readiness}"
     if message = threat_data.message
       response = "#{response} - #{message}"
