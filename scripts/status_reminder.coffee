@@ -21,7 +21,7 @@ module.exports = (robot) ->
 
   send_reminders = ->
     for user in robot.brain.data.status_reminder.users
-      if user.last_status_date < (new Date().getTime()) - milliseconds_since_midnight)
+      if user.last_status_date < (new Date().getTime()) - seconds_since_midnight
         message = "Hey #{username}! Please update your daily status. Thanks!"
         robot.send {user: {name: user.username}}, message
 
