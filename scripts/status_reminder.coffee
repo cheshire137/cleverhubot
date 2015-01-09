@@ -8,7 +8,6 @@
 #   status reminder add user <username> - Add a user
 #   status reminder remove user <username> - Remove a user
 #   status reminder list users - List all users getting reminders and show stats
-#   status reminder add user <username> - Add a user
 #   status reminder send reminders - Send reminders
 #
 module.exports = (robot) ->
