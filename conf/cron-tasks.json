@@ -1,6 +1,6 @@
 [
   {
-    "time": "0 11 * * * ",
+    "time": "0 11 * * 1-5 ",
     "event": "status reminder send reminders"
   }
 ]
